@@ -14,6 +14,8 @@ class Table extends Component {
 
     componentDidMount() {
 
+        console.log('table mounted');
+
         this.apiCheck();
 
     }
@@ -21,8 +23,6 @@ class Table extends Component {
     apiCheck() {
 
         return axios.get('https://api.software.madkting.com/shops/76/products/?page_size=100', {headers: {'Accept': 'application/json', 'Authorization': 'Token cb0763f1c60a3583dd23f629e3a8bf9c2eebc8a0'}}).then(res=>{
-
-            console.log(res.data);
 
             this.setState({results: res.data});
 
@@ -52,8 +52,6 @@ class Table extends Component {
     closeButtonCheck = event => {
 
         event.preventDefault();
-
-        // let click = event.target;
 
         this.setState({id: false});
 

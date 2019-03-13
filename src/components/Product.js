@@ -20,17 +20,55 @@ class Product extends Component {
 
         let title;
 
+        let price;
+
         let stock;
 
-        let button
+        let button;
+
+        let arr;
+
+        let links = [];
+
+        let picTable;
 
         if (this.state.prod){
 
-            title = this.state.prod.name;
+            arr = this.state.prod.images;
 
-            stock = this.state.prod.stock;
+            arr.map((el)=>{
 
-            button = <button onClick={this.props.check} id={this.state.prod.id} type="button">Close</button>
+                links.push(el.url_source);
+    
+            });
+
+            let arrRows = links.map(el=>{
+
+                return (
+
+                    <img className='product' src={el} alt={this.state.name}></img>
+
+                )
+
+            });
+
+            title = <h1>{this.state.prod.name}</h1>;
+
+            price = <h2>Price: {this.state.prod.price}</h2>;
+
+            stock = <h2>Stock: {this.state.prod.stock}</h2>;
+
+            picTable = 
+            
+            <table className='full center'>
+                <thead>
+                    <td>
+                        {arrRows}
+                    </td>
+                </thead>
+            </table>
+
+            button = <button onClick={this.props.check} id={this.state.prod.id} type="button">Close</button>;
 
         }
 
@@ -39,6 +77,10 @@ class Product extends Component {
             <div className='center'>
 
                 {title}
+
+                {picTable}
+
+                {price}
 
                 {stock}
 
