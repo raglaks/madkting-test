@@ -45,11 +45,17 @@ class Table extends Component {
 
             console.log('state is ready');
 
-            rows = this.state.results.map(el=>{
+            rows = this.state.results.map((el, key)=>{
+
+                let images = el.images;
+
+                let url = images[0].url_source;
+
+                let pic = <img className='pic' src={url} alt={el.name}></img>
 
                 return (
 
-                    <tr><td>{el.name}</td><td></td><td>{el.price}</td><td>{el.stock}</td></tr>
+                    <tr><td>{key + 1}</td><td>{el.name}</td><td>{pic}</td><td>{el.price}</td><td>{el.stock}</td></tr>
 
                 )
 
@@ -65,19 +71,29 @@ class Table extends Component {
 
             <table className='full'>
 
-                <tr>
+            <thead>
 
-                    <th>Name</th>
+            <tr>
 
-                    <th>Image</th>
+                <th>ID</th>
 
-                    <th>Price</th>
+                <th>Name</th>
 
-                    <th>Stock</th>
+                <th>Image</th>
 
-                </tr>
+                <th>Price</th>
+
+                <th>Stock</th>
+
+            </tr>
+
+            </thead>
+
+            <tbody>
 
                 {rows}
+
+            </tbody>
 
             </table>
 
