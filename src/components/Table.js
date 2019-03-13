@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import Product from './Product';
 
 class Table extends Component {
 
@@ -12,8 +13,6 @@ class Table extends Component {
     }
 
     componentDidMount() {
-
-        console.log('it mounted');
 
         this.apiCheck();
 
@@ -35,15 +34,52 @@ class Table extends Component {
 
     }
 
+    handleClick = event => {
+
+        event.preventDefault();
+    
+        let click = event.target.id;
+    
+        this.updateState(click);
+    };
+
+    updateState(click) {
+
+        this.setState({id: click});
+
+    }
+
+    closeButtonCheck = event => {
+
+        event.preventDefault();
+
+        // let click = event.target;
+
+        this.setState({id: false});
+
+    }
+
     render() {
 
-        console.log(this.state);
+        console.log('state of state for render', this.state);
 
         let rows;
 
-        if (this.state.results) {
+        if (this.state.id) {
 
-            console.log('state is ready');
+            let chosen = this.state.id;
+
+            let info = this.state.results[chosen];
+
+            return (
+
+                <Product data={info} check={this.closeButtonCheck}/>
+
+            )
+
+        }
+
+        if (this.state.results) {
 
             rows = this.state.results.map((el, key)=>{
 
@@ -53,7 +89,7 @@ class Table extends Component {
 
                 let pic = <img className='pic' src={url} alt={el.name}></img>
 
-                let button = <button type="button">Product details</button>
+                let button = <button onClick={this.handleClick} id={key} type="button">Product details</button>
 
                 return (
 
@@ -67,7 +103,7 @@ class Table extends Component {
 
             console.log('state is not ready');
 
-            rows = <tr><td><h1>LOADING</h1></td><td><h1>LOADING</h1></td><td><h1>LOADING</h1></td><td><h1>LOADING</h1></td><td><h1>LOADING</h1><h1></h1></td></tr>
+            rows = <tr><td><h1>LOADING</h1></td><td><h1>LOADING</h1></td><td><h1>LOADING</h1></td><td><h1>LOADING</h1></td><td><h1>LOADING</h1></td><td><h1>LOADING</h1></td></tr>
 
         }
 
@@ -75,31 +111,31 @@ class Table extends Component {
 
             <table className='full center'>
 
-            <thead>
+                <thead>
 
-            <tr>
+                <tr>
 
-                <th>ID</th>
+                    <th>ID</th>
 
-                <th>Name</th>
+                    <th>Name</th>
 
-                <th>Image</th>
+                    <th>Image</th>
 
-                <th>Price</th>
+                    <th>Price</th>
 
-                <th>Stock</th>
+                    <th>Stock</th>
 
-                <th></th>
+                    <th></th>
 
-            </tr>
+                </tr>
 
-            </thead>
+                </thead>
 
-            <tbody>
+                <tbody>
 
-                {rows}
+                    {rows}
 
-            </tbody>
+                </tbody>
 
             </table>
 
