@@ -21,7 +21,7 @@ class Table extends Component {
 
     apiCheck() {
 
-        return axios.get('https://api.software.madkting.com/shops/76/products/', {headers: {'Accept': 'application/json', 'Authorization': 'Token cb0763f1c60a3583dd23f629e3a8bf9c2eebc8a0'}}).then(res=>{
+        return axios.get('https://api.software.madkting.com/shops/76/products/?page_size=100', {headers: {'Accept': 'application/json', 'Authorization': 'Token cb0763f1c60a3583dd23f629e3a8bf9c2eebc8a0'}}).then(res=>{
 
             console.log(res.data);
 
@@ -53,9 +53,11 @@ class Table extends Component {
 
                 let pic = <img className='pic' src={url} alt={el.name}></img>
 
+                let button = <button type="button">Product details</button>
+
                 return (
 
-                    <tr><td>{key + 1}</td><td>{el.name}</td><td>{pic}</td><td>{el.price}</td><td>{el.stock}</td></tr>
+                    <tr><td>{key + 1}</td><td>{el.name}</td><td>{pic}</td><td>{el.price}</td><td>{el.stock}</td><td>{button}</td></tr>
 
                 )
 
@@ -65,11 +67,13 @@ class Table extends Component {
 
             console.log('state is not ready');
 
+            rows = <tr><td><h1>LOADING</h1></td><td><h1>LOADING</h1></td><td><h1>LOADING</h1></td><td><h1>LOADING</h1></td><td><h1>LOADING</h1><h1></h1></td></tr>
+
         }
 
         return(
 
-            <table className='full'>
+            <table className='full center'>
 
             <thead>
 
@@ -84,6 +88,8 @@ class Table extends Component {
                 <th>Price</th>
 
                 <th>Stock</th>
+
+                <th></th>
 
             </tr>
 
