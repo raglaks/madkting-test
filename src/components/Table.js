@@ -61,7 +61,11 @@ class Table extends Component {
 
         console.log('state of state for render', this.state);
 
+        let table;
+
         let rows;
+
+        //let notReady = <h1>LOADING...</h1>;
 
         if (this.state.id) {
 
@@ -97,45 +101,49 @@ class Table extends Component {
 
             });
 
+            table = <table className='full center'>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>ID</th>
+
+                            <th>Name</th>
+
+                            <th>Image</th>
+
+                            <th>Price</th>
+
+                            <th>Stock</th>
+
+                            <th></th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        {rows}
+
+                    </tbody>
+
+                </table>
+
         } else {
 
             console.log('state is not ready');
 
-            rows = <tr><td><h1>LOADING</h1></td><td><h1>LOADING</h1></td><td><h1>LOADING</h1></td><td><h1>LOADING</h1></td><td><h1>LOADING</h1></td><td><h1>LOADING</h1></td></tr>
+            table = <h1 className='center'>LOADING...</h1>;
+
+            // rows = <tr><td><h1>LOADING</h1></td><td><h1>LOADING</h1></td><td><h1>LOADING</h1></td><td><h1>LOADING</h1></td><td><h1>LOADING</h1></td><td><h1>LOADING</h1></td></tr>
 
         }
 
         return(
 
-            <table className='full center'>
-
-                <thead>
-
-                <tr>
-
-                    <th>ID</th>
-
-                    <th>Name</th>
-
-                    <th>Image</th>
-
-                    <th>Price</th>
-
-                    <th>Stock</th>
-
-                    <th></th>
-
-                </tr>
-
-                </thead>
-
-                <tbody>
-
-                    {rows}
-
-                </tbody>
-
-            </table>
+            table
 
         )
 
