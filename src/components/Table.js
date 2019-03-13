@@ -65,8 +65,6 @@ class Table extends Component {
 
         let rows;
 
-        //let notReady = <h1>LOADING...</h1>;
-
         if (this.state.id) {
 
             let chosen = this.state.id;
@@ -136,8 +134,6 @@ class Table extends Component {
             console.log('state is not ready');
 
             table = <h1 className='center'>LOADING...</h1>;
-
-            // rows = <tr><td><h1>LOADING</h1></td><td><h1>LOADING</h1></td><td><h1>LOADING</h1></td><td><h1>LOADING</h1></td><td><h1>LOADING</h1></td><td><h1>LOADING</h1></td></tr>
 
         }
 
