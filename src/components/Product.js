@@ -22,6 +22,10 @@ class Product extends Component {
 
         let price;
 
+        let brand;
+
+        let condition;
+
         let stock;
 
         let button;
@@ -31,6 +35,8 @@ class Product extends Component {
         let links = [];
 
         let picTable;
+
+        let shipping;
 
         if (this.state.prod){
 
@@ -56,7 +62,13 @@ class Product extends Component {
 
             price = <h2>Price: {this.state.prod.price}</h2>;
 
+            brand = <h2>Brand: {this.state.prod.brand}</h2>;
+
+            condition = <h2>Condition: {this.state.prod.condition}</h2>;
+
             stock = <h2>Stock: {this.state.prod.stock}</h2>;
+
+            shipping = <div><h2>Shipping info:</h2><h3>Length: {this.state.prod.shipping_depth} {this.state.prod.dimensions_unit}, Width: {this.state.prod.shipping_width} {this.state.prod.dimensions_unit}, Height: {this.state.prod.shipping_height} {this.state.prod.dimensions_unit}<br></br>Weight: {this.state.prod.weight} {this.state.prod.weight_unit}</h3></div>
 
             picTable = 
             
@@ -78,11 +90,17 @@ class Product extends Component {
 
                 {title}
 
+                {brand}
+
                 {picTable}
 
                 {price}
 
+                {condition}
+
                 {stock}
+
+                {shipping}
 
                 {button}
 
